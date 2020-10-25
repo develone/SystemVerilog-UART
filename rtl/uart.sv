@@ -22,7 +22,7 @@
  THE SOFTWARE.
 */
 
-`include "if/uart_if.sv"
+//`include "if/uart_if.sv"
 
 module uart
   #(parameter
@@ -41,12 +41,16 @@ module uart
     input logic  rstn);
 
    uart_tx #(DATA_WIDTH, BAUD_RATE, CLK_FREQ)
+   /* verilator lint_off PINMISSING */
    uart_tx_inst(.rxif(rxif),
+   /* verilator lint_off PINMISSING */
                 .clk(clk),
                 .rstn(rstn));
 
    uart_rx #(DATA_WIDTH, BAUD_RATE, CLK_FREQ)
+   /* verilator lint_off PINMISSING */
    uart_rx_inst(.txif(txif),
+   /* verilator lint_off PINMISSING */
                 .clk(clk),
                 .rstn(rstn));
 endmodule
